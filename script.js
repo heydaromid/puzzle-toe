@@ -3,6 +3,7 @@
 const main = document.querySelector('#main');
 let n = 3;
 let boxNum = [''];
+let winBox = ['1', '2', '3', '4', '5', '6', '7', '8', ''];
 
 // draw boxes
 for (let i = 0; i < n * n; i++) {
@@ -22,27 +23,32 @@ while (boxNum.length < 9) {
 }
 
 const boxes = document.querySelectorAll('.box');
-for (let j = 0; j < boxes.length; j++) {
+for (let i = 0; i < boxes.length; i++) {
     boxes[0].classList.add('empty');
-    boxes[j].innerHTML = boxNum[j];
-    boxes[j].addEventListener('click', () => {
-        if ((boxes[j - 3] !== undefined && boxes[j - 3].innerHTML === "") || (boxes[j - 1] !== undefined && boxes[j - 1].innerHTML === "") || (boxes[j + 1] !== undefined && boxes[j + 1].innerHTML === "") || (boxes[j + 3] !== undefined && boxes[j + 3].innerHTML === "")) {
+    boxes[i].innerHTML = boxNum[i];
+    boxes[i].addEventListener('click', () => {
+        if (boxNum.toString() === winBox.toString()) {
+            win();
+        } else if ((boxes[i - 3] !== undefined && boxes[i - 3].innerHTML === "")
+        || (boxes[i - 1] !== undefined && boxes[i - 1].innerHTML === "")
+        || (boxes[i + 1] !== undefined && boxes[i + 1].innerHTML === "")
+        || (boxes[i + 3] !== undefined && boxes[i + 3].innerHTML === "")) {
             const empty = document.querySelector('.empty');
-            empty.innerHTML = boxes[j].innerHTML;
-            boxes[j].innerHTML = ""
+            empty.innerHTML = boxes[i].innerHTML;
+            boxes[i].innerHTML = "";
             empty.classList.remove('empty');
-            boxes[j].classList.add('empty');
-        } else {}
+            boxes[i].classList.add('empty');
+            for (let j = 0; j < boxes.length; j++) {
+                boxNum[j] = boxes[j].innerHTML;
+            }
+        }
     });
 }
 
-let winBox = ['1', '2', '3', '4', '5', '6', '7', '8'];
 
-// console.log(boxNum);
-// function random() {
-//     const box = document.querySelector(`[data-id="${getRandomInt(8)}"]`);
-//     box.innerHTML = `${getRandomInt(8)}`;
-// }
+function win() {
+    alert("you win!");
+}
 
 function getRandomInt(max) {
     return Math.floor(Math.random() * max) +1;
