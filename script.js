@@ -27,7 +27,7 @@ for (let i = 0; i < boxes.length; i++) {
     boxes[0].classList.add('empty');
     boxes[i].innerHTML = boxNum[i];
     boxes[i].addEventListener('click', () => {
-        if (i === 2 || i === 5) {
+        if (i % 3 === 2) {
             if ((boxes[i - 3] !== undefined && boxes[i - 3].innerHTML === "")
             || (boxes[i - 1] !== undefined && boxes[i - 1].innerHTML === "")
             || (boxes[i + 3] !== undefined && boxes[i + 3].innerHTML === "")) {
@@ -44,7 +44,7 @@ for (let i = 0; i < boxes.length; i++) {
                 }
             }
         }
-        if (i === 3 || i === 6) {
+        if (i % 3 === 0) {
             if ((boxes[i - 3] !== undefined && boxes[i - 3].innerHTML === "")
             || (boxes[i + 1] !== undefined && boxes[i + 1].innerHTML === "")
             || (boxes[i + 3] !== undefined && boxes[i + 3].innerHTML === "")) {
@@ -61,7 +61,7 @@ for (let i = 0; i < boxes.length; i++) {
                 }
             }
         }
-        if (i === 0 || i === 1 || i === 4 || i === 7 || i === 8) {
+        if (i % 3 === 1) {
             if ((boxes[i - 3] !== undefined && boxes[i - 3].innerHTML === "")
             || (boxes[i - 1] !== undefined && boxes[i - 1].innerHTML === "")
             || (boxes[i + 1] !== undefined && boxes[i + 1].innerHTML === "")
@@ -82,6 +82,10 @@ for (let i = 0; i < boxes.length; i++) {
     });
 }
 
+const resetGame = document.querySelector('#reset');
+resetGame.addEventListener('click' , () => {
+    location.reload()
+});
 
 function win() {
     const message = document.querySelector('#message');
