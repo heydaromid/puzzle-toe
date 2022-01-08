@@ -19,6 +19,14 @@ body {
     margin: 0 auto;
 }
 
+#message {
+    font-family: monospace;
+    font-size: 32px;
+    font-weight: 900;
+    margin-bottom: 8px;
+    transition: .4s;
+}
+
 .board {
     display: flex;
     flex-direction: column;

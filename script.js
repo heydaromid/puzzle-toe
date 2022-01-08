@@ -27,9 +27,7 @@ for (let i = 0; i < boxes.length; i++) {
     boxes[0].classList.add('empty');
     boxes[i].innerHTML = boxNum[i];
     boxes[i].addEventListener('click', () => {
-        if (boxNum.toString() === winBox.toString()) {
-            win();
-        } else if ((boxes[i - 3] !== undefined && boxes[i - 3].innerHTML === "")
+        if ((boxes[i - 3] !== undefined && boxes[i - 3].innerHTML === "")
         || (boxes[i - 1] !== undefined && boxes[i - 1].innerHTML === "")
         || (boxes[i + 1] !== undefined && boxes[i + 1].innerHTML === "")
         || (boxes[i + 3] !== undefined && boxes[i + 3].innerHTML === "")) {
@@ -41,13 +39,19 @@ for (let i = 0; i < boxes.length; i++) {
             for (let j = 0; j < boxes.length; j++) {
                 boxNum[j] = boxes[j].innerHTML;
             }
+            if (boxNum.toString() === winBox.toString()) {
+                win();
+            }
         }
     });
 }
 
 
 function win() {
-    alert("you win!");
+    const message = document.querySelector('#message');
+    message.innerHTML = 'Great you won!';
+    const empty = document.querySelector('.empty');
+    empty.classList.remove('empty');
 }
 
 function getRandomInt(max) {
