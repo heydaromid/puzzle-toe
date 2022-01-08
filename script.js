@@ -27,20 +27,56 @@ for (let i = 0; i < boxes.length; i++) {
     boxes[0].classList.add('empty');
     boxes[i].innerHTML = boxNum[i];
     boxes[i].addEventListener('click', () => {
-        if ((boxes[i - 3] !== undefined && boxes[i - 3].innerHTML === "")
-        || (boxes[i - 1] !== undefined && boxes[i - 1].innerHTML === "")
-        || (boxes[i + 1] !== undefined && boxes[i + 1].innerHTML === "")
-        || (boxes[i + 3] !== undefined && boxes[i + 3].innerHTML === "")) {
-            const empty = document.querySelector('.empty');
-            empty.innerHTML = boxes[i].innerHTML;
-            boxes[i].innerHTML = "";
-            empty.classList.remove('empty');
-            boxes[i].classList.add('empty');
-            for (let j = 0; j < boxes.length; j++) {
-                boxNum[j] = boxes[j].innerHTML;
+        if (i === 2 || i === 5) {
+            if ((boxes[i - 3] !== undefined && boxes[i - 3].innerHTML === "")
+            || (boxes[i - 1] !== undefined && boxes[i - 1].innerHTML === "")
+            || (boxes[i + 3] !== undefined && boxes[i + 3].innerHTML === "")) {
+                const empty = document.querySelector('.empty');
+                empty.innerHTML = boxes[i].innerHTML;
+                boxes[i].innerHTML = "";
+                empty.classList.remove('empty');
+                boxes[i].classList.add('empty');
+                for (let j = 0; j < boxes.length; j++) {
+                    boxNum[j] = boxes[j].innerHTML;
+                }
+                if (boxNum.toString() === winBox.toString()) {
+                    win();
+                }
             }
-            if (boxNum.toString() === winBox.toString()) {
-                win();
+        }
+        if (i === 3 || i === 6) {
+            if ((boxes[i - 3] !== undefined && boxes[i - 3].innerHTML === "")
+            || (boxes[i + 1] !== undefined && boxes[i + 1].innerHTML === "")
+            || (boxes[i + 3] !== undefined && boxes[i + 3].innerHTML === "")) {
+                const empty = document.querySelector('.empty');
+                empty.innerHTML = boxes[i].innerHTML;
+                boxes[i].innerHTML = "";
+                empty.classList.remove('empty');
+                boxes[i].classList.add('empty');
+                for (let j = 0; j < boxes.length; j++) {
+                    boxNum[j] = boxes[j].innerHTML;
+                }
+                if (boxNum.toString() === winBox.toString()) {
+                    win();
+                }
+            }
+        }
+        if (i === 0 || i === 1 || i === 4 || i === 7 || i === 8) {
+            if ((boxes[i - 3] !== undefined && boxes[i - 3].innerHTML === "")
+            || (boxes[i - 1] !== undefined && boxes[i - 1].innerHTML === "")
+            || (boxes[i + 1] !== undefined && boxes[i + 1].innerHTML === "")
+            || (boxes[i + 3] !== undefined && boxes[i + 3].innerHTML === "")) {
+                const empty = document.querySelector('.empty');
+                empty.innerHTML = boxes[i].innerHTML;
+                boxes[i].innerHTML = "";
+                empty.classList.remove('empty');
+                boxes[i].classList.add('empty');
+                for (let j = 0; j < boxes.length; j++) {
+                    boxNum[j] = boxes[j].innerHTML;
+                }
+                if (boxNum.toString() === winBox.toString()) {
+                    win();
+                }
             }
         }
     });
@@ -51,6 +87,7 @@ function win() {
     const message = document.querySelector('#message');
     message.innerHTML = 'Great you won!';
     const empty = document.querySelector('.empty');
+    empty.innerHTML = '9';
     empty.classList.remove('empty');
 }
 
